@@ -12,9 +12,9 @@ private int opticalZoom;
 	}
 	
 	public String toString(){
-		String output = "";
+		String output = super.toString();
 		// Write your codes here
-		output += String.format("Asset tag: %-10s\n Description: %-10s \n Optical Zoom: %-10s", getAssetTag(), getDescription(), opticalZoom);
+		output = String.format("%-63s %-20d", output, opticalZoom);
 		return output;
 	}
 }
