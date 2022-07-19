@@ -2,11 +2,12 @@ import java.util.ArrayList;
 
 public class ResourceCentre {
 
-	private static final int OPTION_RETURN = 4;
-	private static final int OPTION_LOAN = 3;
-	private static final int OPTION_ADD = 2;
-	private static final int OPTION_VIEW = 1;
 	private static final int OPTION_QUIT = 5;
+	private static final int OPTION_VIEW = 1;
+	private static final int OPTION_ADD = 2;
+	private static final int OPTION_LOAN = 3;
+	private static final int OPTION_RETURN = 4;
+	
 	public static void main(String[] args) {
 
 		ArrayList<Camcorder> camcorderList = new ArrayList<Camcorder>();
@@ -32,7 +33,7 @@ public class ResourceCentre {
 			} else if (option == OPTION_ADD) {
 				// Add a new item
 				ResourceCentre.setHeader("ADD");			
-				itemTypeMenu();
+				ResourceCentre.itemTypeMenu();
 				
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -54,8 +55,9 @@ public class ResourceCentre {
 
 			} else if (option == OPTION_LOAN) {
 				// Loan item
-				ResourceCentre.setHeader("LOAN");			
-				itemTypeMenu();
+				ResourceCentre.setHeader("LOAN");		
+				
+				ResourceCentre.itemTypeMenu();
 				
 				int itemType = Helper.readInt("Enter option to select item type > ");
 
@@ -72,7 +74,7 @@ public class ResourceCentre {
 			} else if (option == OPTION_RETURN) {
 				// Return item
 				ResourceCentre.setHeader("RETURN");				
-				itemTypeMenu();
+				ResourceCentre.itemTypeMenu();
 				
 				int itemType = Helper.readInt("Enter option to select item type > ");
 				if (itemType == 1) {
@@ -152,7 +154,7 @@ public class ResourceCentre {
 		// write your code here
 		for (int i = 0; i < chromebookList.size(); i++) {
 
-			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", chromebookList.get(i).getAssetTag(),
+			output += String.format("%-10s %-30s %-10s %-10s %-20d\n", chromebookList.get(i).getAssetTag().toString(),
 					chromebookList.get(i).getDescription(), 
 					ResourceCentre.showAvailability(chromebookList.get(i).getIsAvailable()),
 					chromebookList.get(i).getDueDate(),chromebookList.get(i).getOs());
@@ -282,6 +284,7 @@ public class ResourceCentre {
 	public static void returnCamcorder(ArrayList<Camcorder> camcorderList) {
 		ResourceCentre.viewAllCamcorder(camcorderList);
 		String tag = Helper.readString("Enter asset tag > ");
+		//String tag = camcorderList.get(i).getAssetTag();
 		Boolean isReturned = doReturnCamcorder(camcorderList, tag);
 		
 		if (isReturned == false) {
